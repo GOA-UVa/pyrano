@@ -3,7 +3,7 @@ requires = ["setuptools>=58.1.0", "wheel", "setuptools_scm[toml]>=6.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "goadb"
+name = "pyrano"
 dynamic = ["version"]
 description = "pyrano is the base package to read and store data from pyranometers."
 readme = "README.md"
