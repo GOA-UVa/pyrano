@@ -15,4 +15,4 @@ def read_send_last(last_hours: float, config_path: str = CONFIG_DEFAULT_PATH):
     df["station"] = cfg.database.station
     df["instr_id"] = cfg.database.instr_id
     df["installed_at"] = pd.to_datetime(cfg.database.installed_at)
-    db.insert_df(df.reset_index(), cfg.database, "measurement")
+    db.insert_df(df, cfg.database, "measurement")

@@ -24,4 +24,5 @@ def read_data_between(first: datetime, last: datetime, conf: StorageSettings) ->
         dfs.append(read_file(os.path.join(conf.output_dir, f)))
     df = pd.concat(dfs)
     df = df[(df['datetime'] >= first) & (df['datetime'] <= last)]
+    df = df.drop(columns=["temp", "voltage"])
     return df
