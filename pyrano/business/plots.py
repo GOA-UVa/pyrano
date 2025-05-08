@@ -7,7 +7,7 @@ import pandas as pd
 
 _FIGSIZE = (12, 6)
 
-def _finish_plot(axes: List[Axes], path: str, legend_loc: str = "upper right"):
+def _finish_plot(axes: List[Axes], path: str):
     ax = axes[0]
     ax.set_axisbelow(True)
     ax.grid()
@@ -22,12 +22,11 @@ def _finish_plot(axes: List[Axes], path: str, legend_loc: str = "upper right"):
         if leg:
             ax.get_legend().remove()
     fig.tight_layout()
-    fig.legend(loc=legend_loc, fontsize="small")
     os.makedirs(os.path.dirname(path), exist_ok=True)
     fig.savefig(path)
 
 def plot_measurements(df: pd.DataFrame, path: str):
-    ax = df.plot.scatter('measured_at', 'value', figsize=_FIGSIZE)
+    ax = df.plot.scatter('measured_at', 'value', 10, "yellow", figsize=_FIGSIZE)
     ax.set_ylabel("Radiation (W/m²)")
     ax.set_xlabel("Date")
     _finish_plot([ax], path)
