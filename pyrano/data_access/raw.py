@@ -10,7 +10,7 @@ _BASECOLS = ["date", "time", "radiation", "temp", "voltage"]
 
 def read_file(path: str) -> pd.DataFrame:
     df = pd.read_csv(path, sep=';', skiprows=1, usecols=[1,2,3,4,5], names=_BASECOLS)
-    df['datetime'] = pd.to_datetime(df['date'] + ' ' + df['time'])
+    df['measured_at'] = pd.to_datetime(df['date'] + ' ' + df['time'])
     df = df.drop(columns=['date', 'time'])
     return df
 
@@ -23,6 +23,6 @@ def read_data_between(first: datetime, last: datetime, conf: StorageSettings) ->
     for f in files:
         dfs.append(read_file(os.path.join(conf.output_dir, f)))
     df = pd.concat(dfs)
-    df = df[(df['datetime'] >= first) & (df['datetime'] <= last)]
+    df = df[(df['measured_at'] >= first) & (df['measured_at'] <= last)]
     df = df.drop(columns=["temp", "voltage"])
     return df
