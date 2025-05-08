@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from client.post_measurements import read_post
 
 def main():
