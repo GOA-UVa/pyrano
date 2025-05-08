@@ -13,6 +13,7 @@ from pyrano.common.models import (
     ClientServerConfig,
     MeasurementConfig,
     UrlConfig,
+    LogConfig,
 )
 from pyrano.common.constants import CLIENT_CONFIG_DEFAULT_PATH, SERVER_CONFIG_DEFAULT_PATH
 
@@ -26,6 +27,7 @@ class ClientConfig:
     storage: StorageSettings
     measurement: MeasurementConfig
     server: ClientServerConfig
+    log: LogConfig
 
     def store_to_yml(self, path: str):
         with open(path, "w", encoding="utf-8") as ymlfile:
@@ -37,7 +39,8 @@ def _read_client_config_from_file(path: str) -> ClientConfig:
     storage = StorageSettings(**cfg["storage"])
     meas = MeasurementConfig(**cfg["measurement"])
     sv = ClientServerConfig(**cfg["server"])
-    config = ClientConfig(storage, meas, sv)
+    log = LogConfig(**cfg['log'])
+    config = ClientConfig(storage, meas, sv, log)
     return config
 
 
@@ -54,6 +57,7 @@ def _init_client_config(path: str):
 class ServerConfig:
     database: DBConfig
     url: UrlConfig
+    log: LogConfig
 
     def store_to_yml(self, path: str):
         with open(path, "w", encoding="utf-8") as ymlfile:
@@ -64,7 +68,8 @@ def _read_server_config_from_file(path: str) -> ServerConfig:
         cfg = yaml.safe_load(ymlfile)
     db = DBConfig(**cfg["database"])
     url = UrlConfig(**cfg["url"])
-    config = ServerConfig(db, url)
+    log = LogConfig(**cfg['log'])
+    config = ServerConfig(db, url, log)
     return config
 
 def _init_server_config(path: str):

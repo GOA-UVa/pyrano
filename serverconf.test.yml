@@ -5,3 +5,5 @@ database:
   database: pyrano
 url:
   root_path: /pyrano
+log:
+  logdir: logs

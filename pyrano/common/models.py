@@ -21,6 +21,10 @@ class StorageSettings:
     output_dir: str
 
 @dataclass
+class LogConfig:
+    logdir: str
+
+@dataclass
 class ClientServerConfig:
     url: str
 

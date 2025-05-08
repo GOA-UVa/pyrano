@@ -7,6 +7,7 @@ import pandas as pd
 
 from pyrano.data_access.db import insert_df
 from pyrano.common.config import get_server_config
+from pyrano.common.logger import get_logger
 from pyrano.common.constants import SERVER_CONFIG_DEFAULT_PATH
 
 cfg = get_server_config(SERVER_CONFIG_DEFAULT_PATH)
@@ -29,5 +30,5 @@ def add_measurements(measurements: List[Measurement]):
         inserted = insert_df(df, cfg.database, "measurement")
         return {"inserted": inserted}
     except Exception as e:
-        print(e)
+        get_logger(cfg.log).critical(str(e))
         raise HTTPException(status_code=500, detail=str(e))
