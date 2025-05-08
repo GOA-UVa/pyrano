@@ -9,7 +9,8 @@ from pyrano.data_access.db import insert_df
 from pyrano.common.config import get_server_config
 from pyrano.common.constants import SERVER_CONFIG_DEFAULT_PATH
 
-app = FastAPI()
+cfg = get_server_config(SERVER_CONFIG_DEFAULT_PATH)
+app = FastAPI(root_path=cfg.url.root_path)
 
 class Measurement(BaseModel):
     station: str

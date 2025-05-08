@@ -12,6 +12,7 @@ from pyrano.common.models import (
     DBConfig,
     ClientServerConfig,
     MeasurementConfig,
+    UrlConfig,
 )
 from pyrano.common.constants import CLIENT_CONFIG_DEFAULT_PATH, SERVER_CONFIG_DEFAULT_PATH
 
@@ -52,6 +53,7 @@ def _init_client_config(path: str):
 @dataclass
 class ServerConfig:
     database: DBConfig
+    url: UrlConfig
 
     def store_to_yml(self, path: str):
         with open(path, "w", encoding="utf-8") as ymlfile:
@@ -61,7 +63,8 @@ def _read_server_config_from_file(path: str) -> ServerConfig:
     with open(path, encoding="utf-8") as ymlfile:
         cfg = yaml.safe_load(ymlfile)
     db = DBConfig(**cfg["database"])
-    config = ServerConfig(db)
+    url = DBConfig(**cfg["url"])
+    config = ServerConfig(db, url)
     return config
 
 def _init_server_config(path: str):

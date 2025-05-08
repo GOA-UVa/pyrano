@@ -3,3 +3,5 @@ database:
   password: pass
   host: localhost
   database: pyrano
+url:
+  root_path: /pyrano

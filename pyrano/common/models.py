@@ -23,3 +23,7 @@ class StorageSettings:
 @dataclass
 class ClientServerConfig:
     url: str
+
+@dataclass
+class UrlConfig:
+    root_path: str
