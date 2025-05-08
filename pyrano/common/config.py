@@ -10,54 +10,86 @@ import yaml
 from pyrano.common.models import (
     StorageSettings,
     DBConfig,
+    ClientServerConfig,
+    MeasurementConfig,
 )
-from pyrano.common.constants import CONFIG_DEFAULT_PATH
+from pyrano.common.constants import CLIENT_CONFIG_DEFAULT_PATH, SERVER_CONFIG_DEFAULT_PATH
 
-# Singleton configuration value
-_config = None
+# Singleton configuration values
+_client_config = None
+_server_config = None
 
 
 @dataclass
-class Config:
+class ClientConfig:
     storage: StorageSettings
+    measurement: MeasurementConfig
+    server: ClientServerConfig
+
+    def store_to_yml(self, path: str):
+        with open(path, "w", encoding="utf-8") as ymlfile:
+            yaml.safe_dump(asdict(self), ymlfile)
+
+def _read_client_config_from_file(path: str) -> ClientConfig:
+    with open(path, encoding="utf-8") as ymlfile:
+        cfg = yaml.safe_load(ymlfile)
+    storage = StorageSettings(**cfg["storage"])
+    meas = MeasurementConfig(**cfg["measurement"])
+    sv = ClientServerConfig(**cfg["server"])
+    config = ClientConfig(storage, meas, sv)
+    return config
+
+
+def _init_client_config(path: str):
+    """Store in each mutable the values from the parameters file to be used in other functions."""
+    global _client_config
+    base = Path().absolute()
+    if not os.path.exists(path):
+        path = os.path.join(base, "config.test.yml")
+    _client_config = _read_client_config_from_file(path)
+
+
+@dataclass
+class ServerConfig:
     database: DBConfig
 
     def store_to_yml(self, path: str):
         with open(path, "w", encoding="utf-8") as ymlfile:
             yaml.safe_dump(asdict(self), ymlfile)
 
-
-def _read_config_from_file(path: str) -> Config:
+def _read_server_config_from_file(path: str) -> ServerConfig:
     with open(path, encoding="utf-8") as ymlfile:
         cfg = yaml.safe_load(ymlfile)
-    storage = StorageSettings(**cfg["storage"])
     db = DBConfig(**cfg["database"])
-    config = Config(storage, db)
+    config = ServerConfig(db)
     return config
 
-
-def _init_config(path: str):
+def _init_server_config(path: str):
     """Store in each mutable the values from the parameters file to be used in other functions."""
-    global _config
+    global _server_config
     base = Path().absolute()
     if not os.path.exists(path):
-        path = os.path.join(base, "config.test.yml")
-    _config = _read_config_from_file(path)
+        path = os.path.join(base, "serverconf.test.yml")
+    _server_config = _read_server_config_from_file(path)
 
-
-def get_config(config_path=CONFIG_DEFAULT_PATH) -> Config:
+def get_client_config(config_path=CLIENT_CONFIG_DEFAULT_PATH) -> ClientConfig:
     """
-    Read the system mutable params and return them.
+    Read the system client mutable params and return them.
 
     :return: the system global configuration params.
-    :rtype: Config
+    :rtype: ClientConfig
     """
-    if _config is None:
-        _init_config(config_path)
-    return _config
+    if _client_config is None:
+        _init_client_config(config_path)
+    return _client_config
 
+def get_server_config(config_path=SERVER_CONFIG_DEFAULT_PATH) -> ServerConfig:
+    """
+    Read the system server mutable params and return them.
 
-def get_default_config() -> Config:
-    curr_dir = os.path.dirname(os.path.abspath(__file__))
-    path = os.path.join(curr_dir, "assets", "config.test.yml")
-    return _read_config_from_file(path)
+    :return: the system global configuration params.
+    :rtype: ServerConfig
+    """
+    if _server_config is None:
+        _init_server_config(config_path)
+    return _server_config

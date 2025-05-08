@@ -9,6 +9,9 @@ class DBConfig(_DBConfig):
     password: str
     host: str
     database: str
+
+@dataclass
+class MeasurementConfig:
     station: str
     instr_id: str
     installed_at: datetime
@@ -16,3 +19,7 @@ class DBConfig(_DBConfig):
 @dataclass
 class StorageSettings:
     output_dir: str
+
+@dataclass
+class ClientServerConfig:
+    url: str
