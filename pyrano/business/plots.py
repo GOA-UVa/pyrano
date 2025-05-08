@@ -26,7 +26,7 @@ def _finish_plot(axes: List[Axes], path: str):
     fig.savefig(path)
 
 def plot_measurements(df: pd.DataFrame, path: str):
-    ax = df.plot.scatter('measured_at', 'value', 10, "yellow", figsize=_FIGSIZE)
+    ax = df.plot.scatter('measured_at', 'value', 8, "orange", figsize=_FIGSIZE)
     ax.set_ylabel("Radiation (W/m²)")
     ax.set_xlabel("Date")
     _finish_plot([ax], path)
