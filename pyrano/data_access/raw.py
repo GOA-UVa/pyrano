@@ -9,7 +9,7 @@ from pyrano.common.models import StorageSettings
 _BASECOLS = ["date", "time", "radiation", "temp", "voltage"]
 
 def read_file(path: str) -> pd.DataFrame:
-    df = pd.read_csv(path, sep=';', skiprows=1, usecols=[1,2,3,4,5], names=[_BASECOLS])
+    df = pd.read_csv(path, sep=';', skiprows=1, usecols=[1,2,3,4,5], names=_BASECOLS)
     df['datetime'] = pd.to_datetime(df['date'] + ' ' + df['time'])
     df = df.drop(columns=['date', 'time'])
     return df
@@ -23,5 +23,5 @@ def read_data_between(first: datetime, last: datetime, conf: StorageSettings) ->
     for f in files:
         dfs.append(read_file(os.path.join(conf.output_dir, f)))
     df = pd.concat(dfs)
-    df = df[(df['datetime'].dt >= first) & (df['datetime'].dt <= last)]
+    df = df[(df['datetime'] >= first) & (df['datetime'] <= last)]
     return df
