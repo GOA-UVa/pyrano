@@ -63,7 +63,7 @@ def _read_server_config_from_file(path: str) -> ServerConfig:
     with open(path, encoding="utf-8") as ymlfile:
         cfg = yaml.safe_load(ymlfile)
     db = DBConfig(**cfg["database"])
-    url = DBConfig(**cfg["url"])
+    url = UrlConfig(**cfg["url"])
     config = ServerConfig(db, url)
     return config
 
