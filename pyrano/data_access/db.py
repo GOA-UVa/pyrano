@@ -15,7 +15,7 @@ def get_measurements_between(config: DBConfig, station: str, first: datetime, la
     df = db.run_query(
         (
             f"SELECT * FROM measurement WHERE station = '{station}' AND "
-            f"fecha_lectura BETWEEN '{first.strftime(_SQL_DT)}' AND '{last.strftime(_SQL_DT)}'"
+            f"measured_at BETWEEN '{first.strftime(_SQL_DT)}' AND '{last.strftime(_SQL_DT)}'"
         )
     )
     return df
