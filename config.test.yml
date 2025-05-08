@@ -1,8 +1,8 @@
 storage:
   output_dir: C:\\Rad002
 server:
-  url: goa-models.opt.cie.uva.es
+  url: https://goa-models.opt.cie.uva.es/pyrano
 measurement:
   station: goacf
   instr_id: Rad002
-  v: 2023-01-01 00:00:00
+  install_time: 2023-01-01 00:00:00
