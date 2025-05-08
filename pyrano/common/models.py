@@ -14,7 +14,7 @@ class DBConfig(_DBConfig):
 class MeasurementConfig:
     station: str
     instr_id: str
-    installed_at: datetime
+    install_time: datetime
 
 @dataclass
 class StorageSettings:

@@ -5,4 +5,4 @@ server:
 measurement:
   station: goacf
   instr_id: Rad002
-  installed_at: 2023-01-01 00:00:00
+  v: 2023-01-01 00:00:00
