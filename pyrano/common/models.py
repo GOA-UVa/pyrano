@@ -23,6 +23,7 @@ class StorageSettings:
 @dataclass
 class LogConfig:
     logdir: str
+    debug: bool
 
 @dataclass
 class ClientServerConfig:

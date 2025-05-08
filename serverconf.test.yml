@@ -7,3 +7,4 @@ url:
   root_path: /pyrano
 log:
   logdir: logs
+  debug: False
