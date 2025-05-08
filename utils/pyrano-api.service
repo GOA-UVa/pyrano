@@ -1,0 +1,14 @@
+[Unit]
+Description=FastAPI Pyrano API
+After=network.target
+
+[Service]
+User=gaton
+WorkingDirectory=/home/gaton/pyrano
+ExecStart=/bin/bash -c 'source .venv/bin/activate && ./start_api.sh'
+Restart=always
+RestartSec=10
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
