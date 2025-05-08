@@ -1,6 +1,6 @@
 """Read data from pyranometer ouput files"""
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import pandas as pd
 
@@ -17,7 +17,7 @@ def read_file(path: str) -> pd.DataFrame:
 
 def read_data_between(first: datetime, last: datetime, conf: StorageSettings) -> pd.DataFrame:
     firstname = first.strftime("LOG%y%m%d")
-    lastname = last.strftime("LOG%y%m%d")
+    lastname = (last + timedelta(1)).strftime("LOG%y%m%d")
     files = [f for f in os.listdir(conf.output_dir) if firstname <= f <=lastname]
     dfs = []
     for f in files:
