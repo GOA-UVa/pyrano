@@ -129,8 +129,8 @@ ADD
 
 ALTER TABLE `calibration`
 ADD
-    CONSTRAINT `fk_calibration_1` FOREIGN KEY (`station`, `instr_id`, `install_time`) REFERENCES `installation` (`station`, `instr_id`, `install_time`) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT `fk_calibration_1` FOREIGN KEY (`station`, `instr_id`, `install_time`) REFERENCES `installation` (`station`, `instr_id`, `install_time`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 ALTER TABLE `measurement`
 ADD
-    CONSTRAINT `fk_measurement_1` FOREIGN KEY (`station`, `instr_id`, `install_time`) REFERENCES `installation` (`station`, `instr_id`, `install_time`) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT `fk_measurement_1` FOREIGN KEY (`station`, `instr_id`, `install_time`) REFERENCES `installation` (`station`, `instr_id`, `install_time`) ON DELETE RESTRICT ON UPDATE CASCADE;
