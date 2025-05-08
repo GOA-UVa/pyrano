@@ -29,4 +29,5 @@ def add_measurements(measurements: List[Measurement]):
         inserted = insert_df(df, cfg.database, "measurement")
         return {"inserted": inserted}
     except Exception as e:
+        print(e)
         raise HTTPException(status_code=500, detail=str(e))
