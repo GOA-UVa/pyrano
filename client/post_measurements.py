@@ -1,3 +1,5 @@
+from urllib.parse import urljoin
+
 import pandas as pd
 import requests
 
@@ -6,7 +8,7 @@ from pyrano.common.config import get_client_config
 from pyrano.common.constants import CLIENT_CONFIG_DEFAULT_PATH
 
 def _post_measurements(df: pd.DataFrame, api_url="http://localhost:8000/measurements"):
-    df["installed_at"] = pd.to_datetime(df["install_time"]).dt.strftime('%Y-%m-%dT%H:%M:%S')
+    df["install_time"] = pd.to_datetime(df["install_time"]).dt.strftime('%Y-%m-%dT%H:%M:%S')
     df["measured_at"] = pd.to_datetime(df["measured_at"]).dt.strftime('%Y-%m-%dT%H:%M:%S')
 
     payload = df.to_dict(orient="records")
@@ -22,5 +24,4 @@ def _post_measurements(df: pd.DataFrame, api_url="http://localhost:8000/measurem
 def read_post(last_hours: float, config_path = CLIENT_CONFIG_DEFAULT_PATH):
     cfg = get_client_config(config_path)
     df = read_last(last_hours, cfg)
-    cfg
-    _post_measurements(df, cfg.server.url)
+    _post_measurements(df, urljoin(cfg.server.url, "measurements"))
