@@ -21,7 +21,12 @@ def _post_measurements(df: pd.DataFrame, api_url="http://localhost:8000/measurem
         print(f"[ERROR] Insertion failed: {e}")
 
 
+def _join_url(a: str, b: str):
+    if not a.endswith('/'):
+        a = f'{a}/'
+    return urljoin(a, b)
+
 def read_post(last_hours: float, config_path = CLIENT_CONFIG_DEFAULT_PATH):
     cfg = get_client_config(config_path)
     df = read_last(last_hours, cfg)
-    _post_measurements(df, urljoin(cfg.server.url, "measurements"))
+    _post_measurements(df, _join_url(cfg.server.url, "measurements"))
