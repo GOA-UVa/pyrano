@@ -28,6 +28,6 @@ def read_data_between(first: datetime, last: datetime, conf: StorageSettings) ->
         dfs.append(read_file(os.path.join(conf.output_dir, f)))
     df = pd.concat(dfs)
     df = df[(df['measured_at'] >= first) & (df['measured_at'] <= last)]
-    df = df.drop(columns=["temp", "voltage"])
+    df = df.drop(columns=["voltage"])
     df = df.rename(columns={'radiation': 'value'})
     return df

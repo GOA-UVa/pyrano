@@ -68,7 +68,7 @@ CREATE TABLE
         `station` varchar(100) COLLATE utf32_unicode_ci NOT NULL,
         `instr_id` varchar(100) COLLATE utf32_unicode_ci NOT NULL,
         `install_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        `radtype` ENUM('global', 'direct', 'diffuse') NOT NULL
+        `radtype` ENUM('global', 'direct', 'diffuse', 'uv', 'ir') NOT NULL
     ) ENGINE = InnoDB DEFAULT CHARSET = utf32 COLLATE = utf32_unicode_ci;
 
 --
@@ -107,7 +107,8 @@ CREATE TABLE
         `instr_id` varchar(100) COLLATE utf32_unicode_ci NOT NULL,
         `install_time` datetime NOT NULL,
         `measured_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        `value` DOUBLE NOT NULL
+        `value` DOUBLE NOT NULL,
+        `temp` decimal(5,2) NOT NULL
     ) ENGINE = InnoDB DEFAULT CHARSET = utf32 COLLATE = utf32_unicode_ci;
 
 --
