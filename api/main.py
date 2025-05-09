@@ -19,6 +19,7 @@ class Measurement(BaseModel):
     install_time: datetime
     measured_at: datetime
     value: float
+    temp: float
 
 @app.post("/measurements")
 def add_measurements(measurements: List[Measurement]):
