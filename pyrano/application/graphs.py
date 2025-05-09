@@ -14,4 +14,5 @@ def plot_today(station: str, plotpath: str, config_path = SERVER_CONFIG_DEFAULT_
     lat = dfstat['latitude'].values[0]
     lon = dfstat['longitude'].values[0]
     df = geometry.filter_solar_day(df, lat, lon)
-    plots.plot_measurements(df, plotpath)
+    if not df.empty:
+        plots.plot_measurements(df, plotpath)
