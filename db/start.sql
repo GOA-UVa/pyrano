@@ -1,6 +1,6 @@
 USE `pyrano`;
 
-INSERT INTO site (station, latitude, longitude, elevation, description, created_at)
+REPLACE INTO site (station, latitude, longitude, elevation, description, created_at)
 VALUES (
     'goacf',
     41.663632,
@@ -8,9 +8,9 @@ VALUES (
     712.00,
     'Facultad de Ciencias',
     '2023-01-01 00:00:00'
-) ON DUPLICATE KEY UPDATE;
+);
 
-INSERT INTO site (station, latitude, longitude, elevation, description, created_at)
+REPLACE INTO site (station, latitude, longitude, elevation, description, created_at)
 VALUES (
     'ies_jjl',
     41.6329100,
@@ -18,9 +18,9 @@ VALUES (
     730.00,
     'IES José Jiménez Lozano',
     '2023-01-01 00:00:00'
-) ON DUPLICATE KEY UPDATE;
+);
 
-INSERT INTO site (station, latitude, longitude, elevation, description, created_at)
+REPLACE INTO site (station, latitude, longitude, elevation, description, created_at)
 VALUES (
     'cee_1',
     41.6136712,
@@ -28,9 +28,9 @@ VALUES (
     695.00,
     'Centro de Educación Especial Nº1',
     '2023-01-01 00:00:00'
-) ON DUPLICATE KEY UPDATE;
+);
 
-INSERT INTO site (station, latitude, longitude, elevation, description, created_at)
+REPLACE INTO site (station, latitude, longitude, elevation, description, created_at)
 VALUES (
     'derecho',
     41.6524318,
@@ -38,35 +38,35 @@ VALUES (
     708.00,
     'Facultad de Derecho',
     '2023-01-01 00:00:00'
-) ON DUPLICATE KEY UPDATE;
+);
 
-INSERT INTO instrument (instr_id, type, created_at)
+REPLACE INTO instrument (instr_id, type, created_at)
 VALUES (
     'Rad001',
     'SMP10-V',
     '2023-01-01 00:00:00'
-) ON DUPLICATE KEY UPDATE;
+);
 
-INSERT INTO instrument (instr_id, type, created_at)
+REPLACE INTO instrument (instr_id, type, created_at)
 VALUES (
     'Rad002',
     'SMP10-V',
     '2023-01-01 00:00:00'
-) ON DUPLICATE KEY UPDATE;
+);
 
-INSERT INTO instrument (instr_id, type, created_at)
+REPLACE INTO instrument (instr_id, type, created_at)
 VALUES (
     'Rad003',
     'SMP10-V',
     '2023-01-01 00:00:00'
-) ON DUPLICATE KEY UPDATE;
+);
 
-INSERT INTO instrument (instr_id, type, created_at)
+REPLACE INTO instrument (instr_id, type, created_at)
 VALUES (
     'Rad004',
     'SMP10-V',
     '2023-01-01 00:00:00'
-) ON DUPLICATE KEY UPDATE;
+);
 
 INSERT INTO installation (station, instr_id, install_time, radtype)
 VALUES (
