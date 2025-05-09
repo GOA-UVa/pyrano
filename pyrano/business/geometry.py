@@ -4,7 +4,7 @@ from datetime import datetime, timezone, timedelta
 import pandas as pd
 from pvlib import solarposition
 
-def get_solar_day_lims(dt: datetime, lat, lon) -> Tuple[datetime, datetime]:
+def get_solar_day_lims(dt: datetime, lat: float, lon: float) -> Tuple[datetime, datetime]:
     dt0 = datetime(dt.year, dt.month, dt.day, 0, 0, 0, tzinfo=timezone.utc)
     dtr = pd.date_range(dt0, dt0+timedelta(1), freq=timedelta(minutes=15))
     solpos = solarposition.get_solarposition(dtr, lat, lon)
