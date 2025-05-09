@@ -29,13 +29,13 @@ classifiers=[
     "Programming Language :: Python :: 3.13",
 ]
 dependencies = [
+    "goadb~=0.0",
     "pandas~=2.0",
     "pvlib~=0.12",
     "PyYAML~=6.0",
 ]
 
 [project.optional-dependencies]
-goadb = ["goadb~=0.0"] # Mandatory for server side, and one of the following mysqls
 mysql = ["pymysql"] # MIT
 mariadb = ["mariadb"] # LGPL
 mysqlclient = ["mysqlclient~=2.0"] # GPL
