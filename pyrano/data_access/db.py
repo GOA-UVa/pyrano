@@ -19,3 +19,9 @@ def get_measurements_between(config: DBConfig, station: str, first: datetime, la
         )
     )
     return df
+
+
+def get_station(config: DBConfig, station: str) -> pd.DataFrame:
+    db = DataBase(config)
+    df = db.run_query(f"SELECT * FROM site WHERE station = '{station}'")
+    return df

@@ -31,7 +31,8 @@ classifiers=[
 dependencies = [
     "goadb~=0.0",
     "pandas~=2.0",
-    "PyYAML",
+    "pvlib~=0.12",
+    "PyYAML~=6.0",
 ]
 
 [project.optional-dependencies]
