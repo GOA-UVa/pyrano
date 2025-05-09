@@ -25,8 +25,10 @@ def _finish_plot(axes: List[Axes], path: str):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     fig.savefig(path)
 
-def plot_measurements(df: pd.DataFrame, path: str):
+def plot_measurements(df: pd.DataFrame, path: str, xlim=None):
     ax = df.plot.scatter('measured_at', 'value', 8, "orange", figsize=_FIGSIZE)
     ax.set_ylabel("Radiation (W/m²)")
     ax.set_xlabel("Date (UTC)")
+    if xlim:
+        ax.set_xlim(xlim[0], xlim[1])
     _finish_plot([ax], path)
