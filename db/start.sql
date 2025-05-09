@@ -74,7 +74,7 @@ VALUES (
     'Rad001',
     '2023-05-22 09:00:00',
     'global'
-);
+) ON DUPLICATE KEY UPDATE radtype=VALUES(radtype);
 
 INSERT INTO installation (station, instr_id, install_time, radtype)
 VALUES (
@@ -82,7 +82,7 @@ VALUES (
     'Rad002',
     '2023-09-20 09:00:00',
     'global'
-);
+) ON DUPLICATE KEY UPDATE radtype=VALUES(radtype);
 
 INSERT INTO installation (station, instr_id, install_time, radtype)
 VALUES (
@@ -90,7 +90,7 @@ VALUES (
     'Rad003',
     '2025-02-18 09:00:00',
     'global'
-);
+) ON DUPLICATE KEY UPDATE radtype=VALUES(radtype);
 
 INSERT INTO installation (station, instr_id, install_time, radtype)
 VALUES (
@@ -98,4 +98,4 @@ VALUES (
     'Rad004',
     '2024-10-21 09:00:00',
     'global'
-);
+) ON DUPLICATE KEY UPDATE radtype=VALUES(radtype);
