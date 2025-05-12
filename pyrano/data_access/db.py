@@ -18,6 +18,7 @@ def get_measurements_between(config: DBConfig, station: str, first: datetime, la
             f"measured_at BETWEEN '{first.strftime(_SQL_DT)}' AND '{last.strftime(_SQL_DT)}'"
         )
     )
+    df['measured_at'] = pd.to_datetime(df['measured_at'], utc=True)
     return df
 
 
