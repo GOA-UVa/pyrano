@@ -1,5 +1,7 @@
 from datetime import datetime, timezone
 
+import pandas as pd
+
 from pyrano.business import data, plots, geometry
 from pyrano.common.config import get_server_config
 from pyrano.common.constants import SERVER_CONFIG_DEFAULT_PATH
@@ -16,6 +18,6 @@ def plot_today(station: str, plotpath: str, config_path = SERVER_CONFIG_DEFAULT_
     lat = dfstat['latitude'].values[0]
     lon = dfstat['longitude'].values[0]
     dt0, dtf = geometry.get_solar_day_lims(datetime.now(), lat, lon)
-    df = df[(df['measured_at']>=dt0) & (df['measured_at']<=dtf)]
+    df = df[(df['measured_at']>=pd.to_datetime(dt0)) & (df['measured_at']<=pd.to_datetime(dtf))]
     if not df.empty:
         plots.plot_measurements(df, plotpath, (dt0, dtf))
