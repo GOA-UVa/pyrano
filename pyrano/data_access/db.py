@@ -6,7 +6,7 @@ import pandas as pd
 from goadb.sql import DBConfig, DataBase, insert_dataframe as _insdf
 
 def insert_df(df: pd.DataFrame, config: DBConfig, table: str) -> int:
-    return _insdf(df, config, table, False)
+    return _insdf(df, config, table)
 
 _SQL_DT = "%Y-%m-%d %H:%M:%S"
 
