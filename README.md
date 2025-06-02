@@ -1,93 +1,170 @@
-# pyrano
+[![Stargazers][stars-shield]][stars-url]
 
+<br />
+<div align="center">
+  <a href="https://github.com/goa-uva/pyrano">
+    <img src="docs/logo.png" alt="Logo" width="80" height="80">
+  </a>
+
+<h3 align="center">pyrano</h3>
+
+  <p align="center">
+    Centralise sun-radiometer data in a database, and generate graphs.
+    <br />
+    <br />
+    <a href="https://goa.uva.es/facultad-de-ciencias/">View Demo</a>
+  </p>
+</div>
+
+
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li>
+      <a href="#setting-up-the-database">Setting up the Database</a>
+      <ul>
+        <li><a href="#db-prerequisites">DB Prerequisites</a></li>
+        <li><a href="#1-run-the-sql-scripts">1. Run the SQL scripts</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#setting-up-a-measurement-station">Setting up a Measurement Station</a>
+      <ul>
+        <li><a href="#1-set-up-the-configuration-files">1. Set up the configuration files</a></li>
+        <li><a href="#2-modify-the-needed-configuration-values">2. Modify the needed configuration values</a></li>
+        <li><a href="#3-test-the-instrument-data-download">3. Test the instrument data download</a></li>
+        <li><a href="#4-automate-the-read-and-store-task">4. Automate the Read and Store Task</a></li>
+        <li><a href="#5-setup-the-sending-of-latest-data">5. Setup the sending of latest data</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#visualising-data">Visualising Data</a>
+      <ul>
+        <li><a href="#configuration">Configuration</a></li>
+        <li><a href="#available-subcommands">Available Subcommands</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#visualising-data">Sharing Data with Multiple Networks</a>
+      <ul>
+        <li><a href="#windy">Windy</a></li>
+        <li><a href="#wunderground">Wunderground</a></li>
+        <li><a href="#pwsweather">PWSweather</a></li>
+        <li><a href="#weathercloud">Weathercloud</a></li>
+        <li><a href="#meteoclimatic">Meteoclimatic</a></li>
+      </ul>
+    </li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#authors">Authors</a></li>
+  </ol>
+</details>
 
 
 ## Getting started
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+### Prerequisites
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+* Python >= 3.9.0
 
-## Add your files
+### Installation
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+Set Up the Virtual Environment and Install the `pyrano` package and its dependencies.
 
+#### 1. Create and Activate a Virtual Environment
+
+##### **On Linux and macOS**
+```sh
+python3 -m venv .venv
+source .venv/bin/activate
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/goa-uva/pyrano.git
-git branch -M main
-git push -uf origin main
+
+##### **On Windows**
+```bat
+python -m venv .venv
+.venv\Scripts\activate
 ```
 
-## Integrate with your tools
+#### 2. Install `pyrano` package
+After activating the virtual environment, install the `pyrano` package:
+```sh
+pip install -e .
+```
+> *Note*: This library depends on GOA's `goadb` python library
 
-- [ ] [Set up project integrations](https://gitlab.com/goa-uva/pyrano/-/settings/integrations)
 
-## Collaborate with your team
+## Setting up a Measurement Station
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+### 1. Initialise the client configuration file
 
-## Test and Deploy
+Copy the `config.test.yml` as `config.yml` and fill the adequate values for your installation and station.
 
-Use the built-in continuous integration in GitLab.
+### 2. Run the client
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+Once installed, you can run `send_client.py` script which will invoke the code under `client`,
+automatically reading the data and sending it to the database server specified in the configuration file.
 
-***
+This should be automatised using either Linux's crontab or Windows' task scheduler.
 
-# Editing this README
+## Setting up the Database
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+### DB Prerequisites
 
-## Suggestions for a good README
+* mySQL or a compatible DB manager like mariaDB
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+### 1. Run the SQL scripts
 
-## Name
-Choose a self-explaining name for your project.
+After creating the user `username` with the valid permissions for the `pyrano` database, run:
+```sh
+mysql -u username <db/pyrano.sql -p
+mysql -u username <db/start.sql -p
+```
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+## Setting up the Database Server
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+It's not mandatory to set up both the database server and the database together,
+although that's the way it's deployed at GOA.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+### DB Server Requirements
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+* Linux
+* pyrano
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+### 1. Initialise the server configuration file
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Copy the `serverconf.test.yml` as `serverconf.yml` and fill the adequate values for your database setup.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+### 2. Set up pyrano service
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+* Copy `utils/pyrano-api.service` to your systems' service folder
+* Modify that copied file, writing the correct path of the project in your machine
+* Activate the system
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+## Visualising Data
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+This tool allows users to generate visual representations of the radiation data stored in the database.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+This is done through the `plot_last.py` script and must be done with a valid `serverconf.yml` configuration.
+
+```sh
+./plot_last.py station_name
+```
 
 ## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+This project is currently licensed under copyright, and is not intended for public availability.
+
+## Authors
+
+- Javier Gatón Herguedas - [gaton@goa.uva.es](gaton@goa.uva.es).
+
+
+[stars-shield]: https://img.shields.io/github/stars/goa-uva/pyrano.svg?style=for-the-badge
+[stars-url]: https://github.com/goa-uva/pyrano/stargazers
