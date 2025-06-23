@@ -9,7 +9,7 @@
 <h3 align="center">pyrano</h3>
 
   <p align="center">
-    Centralise sun-radiometer data in a database, and generate graphs.
+    Lightweight tool for reading solar radiometer data and sending it to a central database, with built-in support for graph generation.
     <br />
     <br />
     <a href="https://goa.uva.es/facultad-de-ciencias/">View Demo</a>
@@ -126,6 +126,12 @@ After creating the user `username` with the valid permissions for the `pyrano` d
 mysql -u username <db/pyrano.sql -p
 mysql -u username <db/start.sql -p
 ```
+
+### DB Structure
+
+The DB follows the design described in the following diagram:
+
+![UML entity relationship diagram](./docs/uml/db.png)
 
 ## Setting up the Database Server
 
