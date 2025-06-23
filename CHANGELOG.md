@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [//]: # "## [unreleased] - yyyy-mm-dd"
 
+## [unreleased] - yyyy-mm-dd
+
+### Fixed
+- When a file measurement contains a nan radiation value, it is ignored instead of failing to upload all the data.
+
 ## [0.0.1] - 2025-06-02
 
 Initial version that serves as the baseline for tracking changes in the change log.

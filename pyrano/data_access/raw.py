@@ -16,6 +16,7 @@ def read_file(path: str) -> pd.DataFrame:
     df = pd.read_csv(csvdata, sep=';', usecols=[1,2,3,4,5], names=_BASECOLS)
     df['measured_at'] = pd.to_datetime(df['date'] + ' ' + df['time'])
     df = df.drop(columns=['date', 'time'])
+    df = df[df['radiation'].notna()]
     return df
 
 
