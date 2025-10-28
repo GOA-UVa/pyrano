@@ -21,52 +21,50 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
+      <a href="#about-the-project">About the project</a>
+    </li>
+    <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li>
+      <a href="#setting-up-a-measurement-station">Setting up a Measurement Station</a>
+      <ul>
+        <li><a href="#1-initialise-the-client-configuration-file">1. Initialise the client configuration file</a></li>
+        <li><a href="#2-run-the-client">2. Run the client</a></li>
+      </ul>
+    </li>
     <li>
       <a href="#setting-up-the-database">Setting up the Database</a>
       <ul>
         <li><a href="#db-prerequisites">DB Prerequisites</a></li>
         <li><a href="#1-run-the-sql-scripts">1. Run the SQL scripts</a></li>
+        <li><a href="#db-structure">DB Structure</a></li>
       </ul>
     </li>
     <li>
-      <a href="#setting-up-a-measurement-station">Setting up a Measurement Station</a>
+      <a href="#setting-up-the-database-server">Setting up the Database Server</a>
       <ul>
-        <li><a href="#1-set-up-the-configuration-files">1. Set up the configuration files</a></li>
-        <li><a href="#2-modify-the-needed-configuration-values">2. Modify the needed configuration values</a></li>
-        <li><a href="#3-test-the-instrument-data-download">3. Test the instrument data download</a></li>
-        <li><a href="#4-automate-the-read-and-store-task">4. Automate the Read and Store Task</a></li>
-        <li><a href="#5-setup-the-sending-of-latest-data">5. Setup the sending of latest data</a></li>
+        <li><a href="#db-server-requirements">DB Server Requirements</a></li>
+        <li><a href="#1-initialise-the-server-configuration-file">1. Initialise the server configuration file</a></li>
+        <li><a href="#2-set-up-pyrano-service">2. Set up pyrano service</a></li>
       </ul>
     </li>
-    <li>
-      <a href="#visualising-data">Visualising Data</a>
-      <ul>
-        <li><a href="#configuration">Configuration</a></li>
-        <li><a href="#available-subcommands">Available Subcommands</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#visualising-data">Sharing Data with Multiple Networks</a>
-      <ul>
-        <li><a href="#windy">Windy</a></li>
-        <li><a href="#wunderground">Wunderground</a></li>
-        <li><a href="#pwsweather">PWSweather</a></li>
-        <li><a href="#weathercloud">Weathercloud</a></li>
-        <li><a href="#meteoclimatic">Meteoclimatic</a></li>
-      </ul>
-    </li>
+    <li><a href="#visualising-data">Visualising Data</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#authors">Authors</a></li>
   </ol>
 </details>
 
+## About the project
+
+Pyrano is a small Python package accompanied by a set of auxiliary utilities for working with solar radiometer data.
+It allows reading data files, sending measurements to a dedicated database, and visualizing stored data through plots.
+The project is developed by the Group of Atmospheric Optics at the University of Valladolid (GOA-UVa)
+as part of the [PRESENTE](https://goa.uva.es/project/presente/) project.
 
 ## Getting started
 
