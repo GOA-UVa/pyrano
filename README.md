@@ -1,5 +1,5 @@
 [![Latest Tag][version-shield]][version-url]
-[![License Copyright](https://img.shields.io/badge/License-Copyright_(c)_2025_UVa-red.svg?style=for-the-badge)](./LICENSE)
+[![License Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg?style=for-the-badge)](./LICENSE)
 [![Stargazers][stars-shield]][stars-url]
 
 <br />

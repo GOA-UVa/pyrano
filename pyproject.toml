@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pyrano"
 dynamic = ["version"]
-description = "pyrano is the base package to read and store data from pyranometers."
+description = "pyrano is a package to read and store data from pyranometers."
 readme = "README.md"
 authors = [
     { name = "Javier Gatón Herguedas", email = "gaton@goa.uva.es" },
@@ -14,9 +14,11 @@ maintainers = [
     { name = "Javier Gatón Herguedas", email = "gaton@goa.uva.es" },
 ]
 requires-python = ">=3.9"
+license = "LicenseRef-Proprietary"
+license-files = ["LICENSE"]
 classifiers=[
     "Private :: Do Not Upload",
-    "Development Status :: 2 - Pre-Alpha",
+    "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Natural Language :: English",
     "Operating System :: Microsoft :: Windows",

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [//]: # "## [unreleased] - yyyy-mm-dd"
 
+## [unreleased] - yyyy-mm-dd
+
+### Added
+- API key authentication between client and server (`X-API-Key` header) defined in `config.yml` and `serverconf.yml`.
+
 ## [0.0.2] - 2025-10-29
 
 ### Fixed
