@@ -13,10 +13,12 @@ def _post_measurements(df: pd.DataFrame, api_url="http://localhost:8000/measurem
     df["measured_at"] = pd.to_datetime(df["measured_at"]).dt.strftime('%Y-%m-%dT%H:%M:%S')
 
     payload = df.to_dict(orient="records")
-    log = get_logger(get_client_config(config_path).log)
+    cfg = get_client_config(config_path)
+    log = get_logger(cfg.log)
+    headers = {"X-API-Key": cfg.server.x_api_key}
 
     try:
-        response = requests.post(api_url, json=payload)
+        response = requests.post(api_url, json=payload, headers=headers)
         response.raise_for_status()
         msg = f"[OK] Inserted {response.json().get('inserted')} measurements."
         log.debug(msg)

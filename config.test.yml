@@ -1,7 +1,8 @@
 storage:
   output_dir: C:\\Rad002
 server:
-  url: https://goa-models.opt.cie.uva.es/pyrano
+  url: https://example.com/pyrano
+  x_api_key: x_api_key
 measurement:
   station: goacf
   instr_id: Rad002

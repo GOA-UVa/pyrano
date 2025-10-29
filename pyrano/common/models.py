@@ -26,8 +26,13 @@ class LogConfig:
     debug: bool
 
 @dataclass
+class SecureConfig:
+    x_api_key: str
+
+@dataclass
 class ClientServerConfig:
     url: str
+    x_api_key: str
 
 @dataclass
 class UrlConfig:

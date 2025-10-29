@@ -1,5 +1,5 @@
 [![Latest Tag][version-shield]][version-url]
-[![License Copyright](https://img.shields.io/badge/License-Copyright_(c)_2025_UVa-red.svg?style=for-the-badge)](./LICENSE)
+[![License Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg?style=for-the-badge)](./LICENSE)
 [![Stargazers][stars-shield]][stars-url]
 
 <br />
@@ -138,6 +138,10 @@ The DB follows the design described in the following diagram:
 It's not mandatory to set up both the database server and the database together,
 although that's the way it's deployed at GOA.
 
+The diagram bellow illustrates a sample pyrano deployment setup:
+![UML deployment diagram](./docs/uml/deployment.png)
+
+
 ### DB Server Requirements
 
 * Linux
@@ -174,7 +178,7 @@ This project is part of the [PRESENTE](https://goa.uva.es/project/presente/) ini
 
 ## Authors
 
-- Javier Gatón Herguedas - [gaton@goa.uva.es](gaton@goa.uva.es).
+- [Javier Gatón Herguedas](gaton@goa.uva.es) - *Maintainer* - [GOA-UVa](https://goa.uva.es).
 
 ## License
 
