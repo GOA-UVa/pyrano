@@ -182,7 +182,8 @@ m1=&lt;&lt;import&gt;&gt;</panel_attributes>
       <h>60</h>
     </coordinates>
     <panel_attributes>lt=()-
-bg=yellow</panel_attributes>
+bg=yellow
+layer=3</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
   </element>
   <element>
@@ -194,7 +195,8 @@ bg=yellow</panel_attributes>
       <h>120</h>
     </coordinates>
     <panel_attributes>lt=)-
-bg=yellow</panel_attributes>
+bg=yellow
+layer=3</panel_attributes>
     <additional_attributes>30.0;90.0;10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
