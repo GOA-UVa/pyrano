@@ -3,6 +3,7 @@ from typing import List
 from datetime import datetime
 
 from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse
 import pandas as pd
 
 from pyrano.data_access.db import insert_df
@@ -28,7 +29,15 @@ API_KEY = cfg.secure.x_api_key
 async def verify_api_key(request: Request, call_next):
     key = request.headers.get("X-API-Key")
     if key != API_KEY:
-        raise HTTPException(status_code=401, detail="Invalid or missing API key")
+        client_host = request.client.host if request.client else "unknown"
+        method = request.method
+        path = request.url.path
+        shown_key = key[:4] + "..." if key else "None"
+        get_logger(cfg.log).warning(
+            "Unauthorized request: IP=%s method=%s path=%s key=%s",
+            client_host, method, path, shown_key,
+        )
+        return JSONResponse(status_code=401, content={"detail": "Invalid or missing API key"})
     response = await call_next(request)
     return response
 
@@ -43,4 +52,4 @@ def add_measurements(measurements: List[Measurement]):
         return {"inserted": inserted}
     except Exception as e:
         get_logger(cfg.log).critical(str(e))
-        raise HTTPException(status_code=500, detail=str(e))
+        return JSONResponse(status_code=500, content={"detail": str(e)})
