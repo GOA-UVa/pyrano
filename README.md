@@ -1,3 +1,4 @@
+[![Latest Tag][version-shield]][version-url]
 [![License Copyright](https://img.shields.io/badge/License-Copyright_(c)_2025_UVa-red.svg?style=for-the-badge)](./LICENSE)
 [![Stargazers][stars-shield]][stars-url]
 
@@ -188,3 +189,5 @@ See the full [LICENSE](./LICENSE) file for details.
 
 [stars-shield]: https://img.shields.io/github/stars/goa-uva/pyrano.svg?style=for-the-badge
 [stars-url]: https://github.com/goa-uva/pyrano/stargazers
+[version-shield]: https://img.shields.io/github/v/tag/goa-uva/pyrano?style=for-the-badge
+[version-url]: https://github.com/goa-uva/pyrano/tags
