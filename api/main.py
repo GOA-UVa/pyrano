@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import List
 from datetime import datetime
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 import pandas as pd
 
 from pyrano.data_access.db import insert_df
@@ -20,6 +20,17 @@ class Measurement(BaseModel):
     measured_at: datetime
     value: float
     temp: float
+
+
+API_KEY = cfg.secure.x_api_key
+
+@app.middleware("http")
+async def verify_api_key(request: Request, call_next):
+    key = request.headers.get("X-API-Key")
+    if key != API_KEY:
+        raise HTTPException(status_code=401, detail="Invalid or missing API key")
+    response = await call_next(request)
+    return response
 
 @app.post("/measurements")
 def add_measurements(measurements: List[Measurement]):

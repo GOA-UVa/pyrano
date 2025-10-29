@@ -1,10 +1,12 @@
 storage:
   output_dir: C:\\Rad002
-database:
-  username: user
-  password: pass
-  host: localhost
-  database: pyrano
+server:
+  url: https://goa-models.opt.cie.uva.es/pyrano
+  x_api_key: x_api_key
+measurement:
   station: goacf
   instr_id: Rad002
-  installed_at: 2023-01-01 00:00:00
+  install_time: 2023-01-01 00:00:00
+log:
+  logdir: logs
+  debug: False

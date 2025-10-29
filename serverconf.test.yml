@@ -8,3 +8,5 @@ url:
 log:
   logdir: logs
   debug: False
+secure:
+  x_api_key: x_api_key
