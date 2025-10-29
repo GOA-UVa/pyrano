@@ -1,3 +1,4 @@
+[![License Copyright](https://img.shields.io/badge/License-Copyright_(c)_2025_UVa-red.svg?style=for-the-badge)](./LICENSE)
 [![Stargazers][stars-shield]][stars-url]
 
 <br />
@@ -161,14 +162,29 @@ This is done through the `plot_last.py` script and must be done with a valid `se
 ./plot_last.py station_name
 ```
 
-## License
+## Funding
 
-This project is currently licensed under copyright, and is not intended for public availability.
+This project is part of the [PRESENTE](https://goa.uva.es/project/presente/) initiative, funded by the following institutions:
+
+- **Agencia Estatal de Investigación (AEI)**
+- **Unión Europea – NextGenerationEU**
+- **Plan de Recuperación, Transformación y Resiliencia**
+- **Ministerio de Ciencia e Innovación (MICINN)**
 
 ## Authors
 
 - Javier Gatón Herguedas - [gaton@goa.uva.es](gaton@goa.uva.es).
 
+## License
+
+© 2025 Universidad de Valladolid.
+Grupo de Óptica Atmosférica (GOA-UVa).
+All rights reserved.
+
+This project and its contents are protected by copyright and are not open source.
+Reproduction, modification, or distribution is not permitted without prior written authorization.
+
+See the full [LICENSE](./LICENSE) file for details.
 
 [stars-shield]: https://img.shields.io/github/stars/goa-uva/pyrano.svg?style=for-the-badge
 [stars-url]: https://github.com/goa-uva/pyrano/stargazers
