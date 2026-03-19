@@ -31,17 +31,16 @@ classifiers=[
     "Programming Language :: Python :: 3.13",
 ]
 dependencies = [
-    "goadb~=0.0",
     "pandas~=2.0",
     "pvlib~=0.12",
     "PyYAML~=6.0",
 ]
 
 [project.optional-dependencies]
-mysql = ["pymysql"] # MIT
-mariadb = ["mariadb"] # LGPL
-mysqlclient = ["mysqlclient~=2.0"] # GPL
-mysqlconnector = ["mysql-connector-python"] # GPL
+goadb-pymysql = ["goadb[mysql]~=0.0"] # MIT
+goadb-mariadb = ["goadb[mariadb]~=0.0"] # LGPL
+goadb-mysqlclient = ["goadb[mysqlclient]~=0.0"] # GPL
+goadb-mysqlconnector = ["goadb[mysqlconnector]~=0.0"] # GPL
 dev = ["pre-commit", "tox", "interrogate"]
 
 [project.urls]

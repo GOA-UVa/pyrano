@@ -97,7 +97,25 @@ After activating the virtual environment, install the `pyrano` package:
 ```sh
 pip install -e .
 ```
-> *Note*: This library depends on GOA's `goadb` python library
+
+#### (Optional) 3. Install the extra dependencies for the database server
+
+This library depends on GOA's `goadb` python library for the server-side connection.
+`goadb` does not bundle a default MySQL driver. To use it, you must install one of the supported
+drivers manually.
+
+The following ones are valid, but their specs and licenses differ:
+- pymysql: pymysql (MIT)
+- mariadb: mariadb (LGPL)
+- MySQLdb: mysqlclient (GPL)
+- mysql.connector: mysql-connector-python (GPL)
+
+To install one, for example:
+```sh
+pip install -e . 'pyrano[goadb-pymysql]'
+```
+
+> For more information visit [gitlab.com/goa-uva/goadb](https://gitlab.com/goa-uva/goadb)
 
 
 ## Setting up a Measurement Station

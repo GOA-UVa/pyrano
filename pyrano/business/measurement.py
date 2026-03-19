@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 
 from pyrano.data_access import raw
-from pyrano.common.config import ClientConfig
+from pyrano.common.clientconfig import ClientConfig
 
 def read_last(last_hours: float, cfg: ClientConfig) -> pd.DataFrame:
     last = datetime.now()
