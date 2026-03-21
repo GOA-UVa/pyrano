@@ -14,7 +14,7 @@
     Lightweight tool for reading solar radiometer data and sending it to a central database, with built-in support for graph generation.
     <br />
     <br />
-    <a href="https://goa.uva.es/facultad-de-ciencias/">View Demo</a>
+    <a href="https://goa.uva.es/facultad-derecho/">View Demo</a>
   </p>
 </div>
 
@@ -35,6 +35,7 @@
     <li>
       <a href="#setting-up-a-measurement-station">Setting up a Measurement Station</a>
       <ul>
+        <li><a href="#0-smart-explorer-configuration">0. Smart Explorer Configuration</a></li>
         <li><a href="#1-initialise-the-client-configuration-file">1. Initialise the client configuration file</a></li>
         <li><a href="#2-run-the-client">2. Run the client</a></li>
       </ul>
@@ -72,7 +73,8 @@ as part of the [PRESENTE](https://goa.uva.es/project/presente/) project.
 
 ### Prerequisites
 
-* Python >= 3.9.0
+- **Python** >= 3.9.0
+- **Smart Explorer v2** (Kipp & Zonen) configured to generate daily log files with the required measurement data.
 
 ### Installation
 
@@ -120,16 +122,52 @@ pip install -e . 'pyrano[goadb-pymysql]'
 
 ## Setting up a Measurement Station
 
+### 0. Smart Explorer Configuration
+
+For `pyrano` to correctly parse the radiometer data, Smart Explorer must be configured to:
+
+- Include the following four measurement fields:
+  - `Use UTC Time`
+  - `Output 1 (Radiation, Soiling Ratio 1)`
+  - `Temperature (°C)`
+  - `Power Voltage (Volt)`
+- Create new log file **Every Day**.
+
 ### 1. Initialise the client configuration file
 
-Copy the `config.test.yml` as `config.yml` and fill the adequate values for your installation and station.
+Copy the `config.test.yml` to `config.yml` and edit the values to match your installation and station setup.
+
+- `storage.output_dir`: Directory where Smart Explorer stores its output files (log files).
+- `server.url`: URL of the `pyrano` server API endpoint.
+- `server.x_api_key`: API key for authenticating with the `pyrano` server.
+- `measurement.station`: Station identifier used to assign the incoming data.
+- `measurement.instr_id`: Instrument identifier used to assign the data.
+- `measurement.install_time`: Installation timestamp that links the data to a specific installation instance.
+- `log.logdir`: Directory where `pyrano` stores its own log files.
+- `log.debug`: If `True`, enables detailed debug-level logging.
+
+**Important**: For measurements to be successfully ingested, the database must already contain matching records for:
+- A `site` with the specified `station` value.
+- An `instrument` with the specified `instr_id`.
+- An `installation` combining the `station`, `instr_id`, and `install_time`.
+
+Example SQL inserts to set them up:
+```sql
+INSERT INTO site (station, latitude, longitude, elevation, description, created_at)
+  VALUES ('goacf', 41.663632, -4.70586, 712.00, 'Facultad de Ciencias', '2023-01-01 00:00:00');
+INSERT INTO instrument (instr_id, type, created_at)
+  VALUES ('Rad001', 'SMP10-V', '2023-01-01 00:00:00');
+INSERT INTO installation (station, instr_id, install_time, radtype)
+  VALUES ('goacf', 'Rad001', '2023-05-22 09:00:00', 'global');
+```
+
 
 ### 2. Run the client
 
 Once installed, you can run `send_client.py` script which will invoke the code under `client`,
 automatically reading the data and sending it to the database server specified in the configuration file.
 
-This should be automatised using either Linux's crontab or Windows' task scheduler.
+This should be automated using either Linux's crontab or Windows' task scheduler.
 
 ## Setting up the Database
 
