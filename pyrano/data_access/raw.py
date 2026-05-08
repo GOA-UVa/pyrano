@@ -12,6 +12,7 @@ _BASECOLS = ["date", "time", "radiation", "temp", "voltage"]
 def read_file(path: str) -> pd.DataFrame:
     with open(path, encoding="utf-8") as f:
         lines = [line for line in f if line.startswith(".data")]
+    lines = [line for line in lines if line.count(';') > 5]
     csvdata = StringIO("\n".join(lines))
     df = pd.read_csv(csvdata, sep=';', usecols=[1,2,3,4,5], names=_BASECOLS)
     df['measured_at'] = pd.to_datetime(df['date'] + ' ' + df['time'])

@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased] - yyyy-mm-dd
 
+### Added
+- Ignore rows with fewer columns than expected while parsing the raw data file, avoiding crashes.
+
 ### Changed
 - Purely client-side code no longer imports `goadb`, making the installation of `goadb` optional.
 
