@@ -177,3 +177,4 @@ config.yml
 serverconf.yml
 plots
 logs
+ignore_folder
