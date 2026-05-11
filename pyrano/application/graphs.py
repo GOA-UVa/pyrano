@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 import pandas as pd
 
 from pyrano.business import data, plots, geometry
-from pyrano.common.config import get_server_config
+from pyrano.common.serverconfig import get_server_config
 from pyrano.common.constants import SERVER_CONFIG_DEFAULT_PATH
 
 def plot_last_hours(last_hours: float, station: str, plotpath: str, config_path = SERVER_CONFIG_DEFAULT_PATH):

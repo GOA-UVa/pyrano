@@ -4,7 +4,7 @@ import pandas as pd
 import requests
 
 from pyrano.business.measurement import read_last
-from pyrano.common.config import get_client_config
+from pyrano.common.clientconfig import get_client_config
 from pyrano.common.constants import CLIENT_CONFIG_DEFAULT_PATH
 from pyrano.common.logger import get_logger
 

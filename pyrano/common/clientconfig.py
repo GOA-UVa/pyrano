@@ -9,18 +9,14 @@ import yaml
 
 from pyrano.common.models import (
     StorageSettings,
-    DBConfig,
     ClientServerConfig,
     MeasurementConfig,
-    UrlConfig,
     LogConfig,
-    SecureConfig,
 )
-from pyrano.common.constants import CLIENT_CONFIG_DEFAULT_PATH, SERVER_CONFIG_DEFAULT_PATH
+from pyrano.common.constants import CLIENT_CONFIG_DEFAULT_PATH
 
 # Singleton configuration values
 _client_config = None
-_server_config = None
 
 
 @dataclass
@@ -54,35 +50,6 @@ def _init_client_config(path: str):
     _client_config = _read_client_config_from_file(path)
 
 
-@dataclass
-class ServerConfig:
-    database: DBConfig
-    url: UrlConfig
-    log: LogConfig
-    secure: SecureConfig
-
-    def store_to_yml(self, path: str):
-        with open(path, "w", encoding="utf-8") as ymlfile:
-            yaml.safe_dump(asdict(self), ymlfile)
-
-def _read_server_config_from_file(path: str) -> ServerConfig:
-    with open(path, encoding="utf-8") as ymlfile:
-        cfg = yaml.safe_load(ymlfile)
-    db = DBConfig(**cfg["database"])
-    url = UrlConfig(**cfg["url"])
-    log = LogConfig(**cfg['log'])
-    secure = SecureConfig(**cfg['secure'])
-    config = ServerConfig(db, url, log, secure)
-    return config
-
-def _init_server_config(path: str):
-    """Store in each mutable the values from the parameters file to be used in other functions."""
-    global _server_config
-    base = Path().absolute()
-    if not os.path.exists(path):
-        path = os.path.join(base, "serverconf.test.yml")
-    _server_config = _read_server_config_from_file(path)
-
 def get_client_config(config_path=CLIENT_CONFIG_DEFAULT_PATH) -> ClientConfig:
     """
     Read the system client mutable params and return them.
@@ -93,14 +60,3 @@ def get_client_config(config_path=CLIENT_CONFIG_DEFAULT_PATH) -> ClientConfig:
     if _client_config is None:
         _init_client_config(config_path)
     return _client_config
-
-def get_server_config(config_path=SERVER_CONFIG_DEFAULT_PATH) -> ServerConfig:
-    """
-    Read the system server mutable params and return them.
-
-    :return: the system global configuration params.
-    :rtype: ServerConfig
-    """
-    if _server_config is None:
-        _init_server_config(config_path)
-    return _server_config

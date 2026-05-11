@@ -7,7 +7,7 @@ from fastapi.responses import JSONResponse
 import pandas as pd
 
 from pyrano.data_access.db import insert_df
-from pyrano.common.config import get_server_config
+from pyrano.common.serverconfig import get_server_config
 from pyrano.common.logger import get_logger
 from pyrano.common.constants import SERVER_CONFIG_DEFAULT_PATH
 

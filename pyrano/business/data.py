@@ -2,7 +2,7 @@ from datetime import datetime, timedelta, timezone
 
 import pandas as pd
 
-from pyrano.common.config import ServerConfig
+from pyrano.common.serverconfig import ServerConfig
 from pyrano.data_access.db import get_measurements_between, get_station as _gstat
 
 def get_last_measurements(last_hours: float, station: str, cfg: ServerConfig) -> pd.DataFrame:
