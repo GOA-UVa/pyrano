@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [//]: # "## [unreleased] - yyyy-mm-dd"
 
+## [unreleased] - yyyy-mm-dd
+
+### Fixed
+- Removed `--reload` flag from uvicorn server start script `start_api.sh` fixing high CPU consumption.
+
 ## [0.0.4] - 2026-05-11
 
 ### Added
