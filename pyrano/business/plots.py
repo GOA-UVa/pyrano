@@ -3,6 +3,7 @@ import os
 
 from matplotlib.axes import Axes
 from matplotlib import dates as mdates
+import matplotlib.pyplot as plt
 import pandas as pd
 
 _FIGSIZE = (12, 6)
@@ -24,6 +25,7 @@ def _finish_plot(axes: List[Axes], path: str):
     fig.tight_layout()
     os.makedirs(os.path.dirname(path), exist_ok=True)
     fig.savefig(path)
+    plt.close(fig)
 
 def plot_measurements(df: pd.DataFrame, path: str, xlim=None):
     ax = df.plot.scatter('measured_at', 'value', 7, "#F8AE54", figsize=_FIGSIZE)

@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Removed `--reload` flag from uvicorn server start script `start_api.sh` fixing high CPU consumption.
+- Explicitly closed `matplotlib` figures to release memory and prevent process accumulation.
 
 ## [0.0.4] - 2026-05-11
 
